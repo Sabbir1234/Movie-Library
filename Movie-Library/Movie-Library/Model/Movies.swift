@@ -54,9 +54,8 @@ enum OriginalLanguage: String, Codable {
     case en = "en"
 }
 
-struct MovieFinder
-{
-    static func fetchData(at url: URL, completion: @escaping (Result<Movies, Error>) -> Void) {
+extension Movies {
+    static func fetchMovies(at url: URL, completion: @escaping (Result<Movies, Error>) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
