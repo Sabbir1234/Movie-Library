@@ -34,6 +34,7 @@
                     <navigationItem key="navigationItem" title="Movie List" id="ew4-kM-N93"/>
                     <connections>
                         <outlet property="movieListTableView" destination="48m-Jl-Pyw" id="j6i-HK-KY4"/>
+                        <outlet property="tableViewBottomConst" destination="HV3-DV-jHJ" id="r9o-TI-bc8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
