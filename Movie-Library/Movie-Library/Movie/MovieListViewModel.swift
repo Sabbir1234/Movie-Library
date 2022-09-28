@@ -11,11 +11,17 @@ class MovieListViewModel {
     
     let baseUrl = "https://api.themoviedb.org/3/search/movie?api_key=be848c19400f09684af473cde6176a48&query=marvel"
     static let posterImageBaseUrl = "http://image.tmdb.org/t/p/w500"
+    static let imageCache = NSCache<AnyObject, AnyObject>()
     
     /// store all movies
     var movies : [Movie]?
     /// Action after getting movie list
     var gotMovieListAction: (() -> Void)?
+    
+    init() {
+        MovieListViewModel.imageCache.countLimit = 30
+        getMovies()
+    }
     
     /// Get movies from remote url
     func getMovies() {

@@ -29,7 +29,6 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         setupSearchController()
         setupTableView()
-        viewModel.getMovies()
         viewModel.gotMovieListAction = {
             DispatchQueue.main.async { [weak self] in
                 self?.movieListTableView.reloadData()
