@@ -23,6 +23,8 @@ class MovieInfoCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    /// Configuring Cell with movie value
+    /// - Parameter movie: Struct ( Movie )
     func configureCell(movie: Movie) {
         self.titleLabel.text = movie.title
         self.overviewLabel.text = movie.overview

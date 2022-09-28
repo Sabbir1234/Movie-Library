@@ -11,6 +11,7 @@ class MovieListViewController: UIViewController {
 
     @IBOutlet weak var movieListTableView: UITableView!
     var viewModel = MovieListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -18,19 +19,16 @@ class MovieListViewController: UIViewController {
         viewModel.gotMovieListAction = {
             DispatchQueue.main.async { [weak self] in
                 self?.movieListTableView.reloadData()
-                self?.movieListTableView.layoutIfNeeded()
-                self?.movieListTableView.beginUpdates()
-                self?.movieListTableView.endUpdates()
             }
         }
     }
     
-    
+    /// Setup Table View
     private func setupTableView() {
         movieListTableView.delegate = self
         movieListTableView.dataSource = self
         movieListTableView.register(UINib(nibName: MovieInfoCell.className, bundle: nil), forCellReuseIdentifier: MovieInfoCell.className)
-        movieListTableView.estimatedRowHeight = 108
+        movieListTableView.estimatedRowHeight = 110
         movieListTableView.rowHeight = UITableView.automaticDimension
     }
 }
@@ -38,6 +36,7 @@ class MovieListViewController: UIViewController {
 //MARK: UITableViewDelegate & UITableViewDataSource methods
 
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.movies?.count ?? 0
     }
