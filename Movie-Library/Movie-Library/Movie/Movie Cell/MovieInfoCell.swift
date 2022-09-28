@@ -9,7 +9,7 @@ import UIKit
 
 class MovieInfoCell: UITableViewCell {
 
-    @IBOutlet weak var posterImageVIew: UIImageView!
+    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     override func awakeFromNib() {
@@ -32,7 +32,9 @@ class MovieInfoCell: UITableViewCell {
             let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
             DispatchQueue.main.async { [weak self] in
                 if let data = data {
-                    self?.posterImageVIew.image = UIImage(data: data)
+                    self?.posterImageView.image = UIImage(data: data)
+                } else {
+                    self?.posterImageView.image = UIImage(named: "NoImageIcon")
                 }
             }
         }
