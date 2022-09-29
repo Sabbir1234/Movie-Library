@@ -69,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				01C2234628E372E400F34297 /* App */,
+				01C2234428E372B100F34297 /* Model */,
 				01C2232128E32B3A00F34297 /* SceneDelegate.swift */,
 				01C2232528E32B3A00F34297 /* Main.storyboard */,
 				01C2232B28E32B3B00F34297 /* Assets.xcassets */,
@@ -77,7 +78,6 @@
 				01C2232828E32B3A00F34297 /* Movie_Library.xcdatamodeld */,
 				01C2234528E372C900F34297 /* Movie */,
 				01C2234328E372A000F34297 /* Extension */,
-				01C2234428E372B100F34297 /* Model */,
 			);
 			path = "Movie-Library";
 			sourceTree = "<group>";

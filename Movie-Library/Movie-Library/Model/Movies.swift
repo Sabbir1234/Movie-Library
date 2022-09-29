@@ -5,6 +5,11 @@
 //  Created by Sabbir Hossain on 27/9/22.
 //
 
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
+
 import Foundation
 
 // MARK: - Welcome
@@ -23,7 +28,7 @@ struct Movies: Codable {
 // MARK: - Result
 struct Movie: Codable {
     let adult: Bool
-    let backdropPath: String?
+    let backdropPath: String
     let genreIDS: [Int]
     let id: Int
     let originalLanguage: OriginalLanguage
@@ -52,7 +57,9 @@ struct Movie: Codable {
 
 enum OriginalLanguage: String, Codable {
     case en = "en"
+    case fr = "fr"
 }
+
 
 extension Movies {
     static func fetchMovies(at url: URL, completion: @escaping (Result<Movies, Error>) -> Void) {
