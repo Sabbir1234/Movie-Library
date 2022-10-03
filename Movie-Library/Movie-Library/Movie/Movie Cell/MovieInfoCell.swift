@@ -28,7 +28,7 @@ class MovieInfoCell: UITableViewCell {
     func configureCell(movie: Movie) {
         self.titleLabel.text = movie.title
         self.overviewLabel.text = movie.overview
-        let posterImageUrlString = MovieListViewModel.posterImageBaseUrl + movie.posterPath
+        let posterImageUrlString = MovieListViewModel.posterImageBaseUrl + (movie.posterPath ?? "")
         let url = URL(string: posterImageUrlString)
         
         // retrieves image if already available in cache

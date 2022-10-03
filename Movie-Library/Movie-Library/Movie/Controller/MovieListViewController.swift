@@ -93,11 +93,11 @@ class MovieListViewController: UIViewController {
     func filterMovies(searchText: String) {
         guard let movies = viewModel.movies else { return }
         filteredMovies = movies.filter { (movie: Movie) -> Bool in
-            return movie.title.lowercased().contains(searchText.lowercased())
+            return movie.title?.lowercased().contains(searchText.lowercased()) ?? false
         }
         filteredMovies = movies.filter({ (movie:Movie) -> Bool in
-            let titleMatch = movie.title.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            let overviewMatch = movie.overview.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            let titleMatch = movie.title?.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            let overviewMatch = movie.overview?.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return titleMatch != nil || overviewMatch != nil }
         )
         
