@@ -12,7 +12,7 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var tableViewBottomConst: NSLayoutConstraint!
     @IBOutlet weak var movieListTableView: UITableView!
     var tableViewBottom : CGFloat = 0.0
-    var viewModel = MovieListViewModel()
+    var viewModel : MovieModelDelegate?
     var filteredMovies = [Movie]()
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -27,9 +27,11 @@ class MovieListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = MovieListViewModel()
+        viewModel?.getData()
         setupSearchController()
         setupTableView()
-        viewModel.gotMovieListAction = {
+        viewModel?.gotMovieListAction = {
             DispatchQueue.main.async { [weak self] in
                 self?.movieListTableView.reloadData()
             }
@@ -91,7 +93,7 @@ class MovieListViewController: UIViewController {
     /// Filter movie from movie list
     /// - Parameter searchText: text searched in search bar
     func filterMovies(searchText: String) {
-        guard let movies = viewModel.movies else { return }
+        guard let movies = viewModel?.movies else { return }
         filteredMovies = movies.filter { (movie: Movie) -> Bool in
             return movie.title?.lowercased().contains(searchText.lowercased()) ?? false
         }
@@ -111,12 +113,12 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering ? filteredMovies.count : viewModel.movies?.count ?? 0
+        return isFiltering ? filteredMovies.count : viewModel?.movies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : MovieInfoCell = tableView.dequeueReusableCell(withIdentifier: MovieInfoCell.className, for: indexPath) as! MovieInfoCell
-        guard let movies = viewModel.movies else { return cell }
+        guard let movies = viewModel?.movies else { return cell }
         let movie = isFiltering ? filteredMovies[indexPath.row] : movies[indexPath.row]
         cell.configureCell(movie: movie)
         return cell
